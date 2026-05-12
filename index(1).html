@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional English Assessment · @INGLES_EXPRESS</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f0f3f7;
+  color: #1c2236;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding-bottom: 60px;
+}
+
+.topbar {
+  width: 100%; background: #1c2236;
+  padding: 14px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.topbar-brand { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.topbar-tag   { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #4a90d9; font-weight: 600; }
+
+.card {
+  width: 100%; max-width: 580px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 28px 16px 0;
+  box-shadow: 0 2px 24px rgba(28,34,54,0.09);
+}
+
+/* ── HEADER ── */
+.card-header {
+  background: #1c2236; padding: 30px 32px 26px;
+  position: relative;
+}
+.card-header::before {
+  content: ""; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px; background: #4a90d9;
+}
+.header-eye  { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #4a90d9; font-weight: 600; margin-bottom: 10px; }
+.header-title{ font-family: "Merriweather", serif; font-size: 22px; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 8px; }
+.header-sub  { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.6; }
+
+.card-meta {
+  padding: 12px 32px; background: #edf1f7;
+  display: flex; gap: 18px; flex-wrap: wrap;
+  border-bottom: 1px solid #e2e7f0;
+}
+.meta-item { font-size: 11.5px; color: #6a7a96; display: flex; align-items: center; gap: 5px; }
+.meta-dot  { width: 4px; height: 4px; border-radius: 50%; background: #4a90d9; flex-shrink: 0; }
+
+/* ── BODY ── */
+.card-body { padding: 28px 32px; }
+
+/* progress */
+.prog-row  { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.prog-lbl  { font-size: 11px; color: #9aaabb; }
+.prog-track{ height: 3px; background: #e2e7f0; border-radius: 2px; margin-bottom: 24px; }
+.prog-fill { height: 3px; background: #4a90d9; border-radius: 2px; transition: width .35s ease; }
+
+/* question */
+.q-step  { font-size: 11px; color: #9aaabb; letter-spacing: 0.08em; margin-bottom: 4px; }
+.q-badge { display: inline-block; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 8px; background: #edf1f7; color: #6a7a96; border-radius: 3px; margin-bottom: 12px; }
+.q-text  { font-size: 17px; font-weight: 500; color: #1c2236; line-height: 1.45; margin-bottom: 18px; }
+
+/* mc options */
+.options { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  display: flex; align-items: flex-start; gap: 11px;
+  border: 1px solid #e2e7f0; border-radius: 6px;
+  padding: 11px 14px; cursor: pointer; background: #fff;
+  transition: border-color .15s, background .15s;
+  text-align: left; width: 100%; font-family: "Inter", sans-serif;
+}
+.opt:hover   { border-color: #b0c8ea; background: #f7f9fc; }
+.opt.selected{ border-color: #4a90d9; background: #eef5fc; }
+.opt-ltr { font-size: 10.5px; font-weight: 600; color: #9aaabb; min-width: 17px; padding-top: 2px; flex-shrink: 0; }
+.opt.selected .opt-ltr { color: #4a90d9; }
+.opt-txt { font-size: 13.5px; color: #2c3a54; line-height: 1.45; }
+
+/* open / text input */
+.open-hint { font-size: 13px; color: #8a9ab8; margin-bottom: 10px; line-height: 1.5; }
+textarea, input[type=email], input[type=text], input[type=url] {
+  width: 100%; border: 1px solid #e2e7f0; border-radius: 6px;
+  padding: 11px 14px; font-size: 14px; font-family: "Inter", sans-serif;
+  color: #1c2236; background: #fff; line-height: 1.6;
+}
+textarea { min-height: 90px; resize: vertical; }
+textarea:focus, input:focus { outline: none; border-color: #4a90d9; }
+.input-hint { font-size: 11.5px; color: #9aaabb; margin-top: 6px; }
+
+/* nav */
+.nav-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 24px; padding-top: 20px; border-top: 1px solid #e2e7f0;
+}
+.btn-back {
+  background: none; border: 1px solid #e2e7f0; border-radius: 6px;
+  padding: 10px 18px; font-size: 13px; color: #8a9ab8;
+  cursor: pointer; font-family: "Inter", sans-serif;
+}
+.btn-back:hover { border-color: #4a90d9; color: #4a90d9; }
+.btn-next {
+  background: #1c2236; color: #fff; border: none; border-radius: 6px;
+  padding: 11px 26px; font-size: 13.5px; font-weight: 500;
+  cursor: pointer; font-family: "Inter", sans-serif; transition: background .15s;
+}
+.btn-next:hover:not(:disabled) { background: #2a3550; }
+.btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── CONTACT STEP ── */
+.contact-intro { font-size: 14px; color: #4a5870; line-height: 1.7; margin-bottom: 22px; }
+.contact-intro strong { color: #1c2236; }
+.field-group { display: flex; flex-direction: column; gap: 14px; }
+.field-label { font-size: 12px; font-weight: 500; color: #4a5870; margin-bottom: 5px; letter-spacing: 0.03em; }
+.field-wrap { display: flex; flex-direction: column; }
+
+/* ── THANK YOU ── */
+.ty-block { padding: 40px 32px; text-align: center; }
+.ty-icon  { font-size: 32px; margin-bottom: 16px; }
+.ty-title { font-family: "Merriweather", serif; font-size: 22px; font-weight: 900; color: #1c2236; margin-bottom: 12px; line-height: 1.3; }
+.ty-sub   { font-size: 14px; color: #4a5870; line-height: 1.75; margin-bottom: 28px; }
+.ty-sub strong { color: #1c2236; }
+.btn-li   {
+  display: inline-block; background: #4a90d9; color: #fff;
+  border-radius: 6px; padding: 12px 28px; font-size: 13px;
+  font-weight: 600; letter-spacing: 0.06em; text-decoration: none;
+  font-family: "Inter", sans-serif;
+}
+
+.site-footer { margin-top: 24px; font-size: 11px; color: #9aaabb; font-style: italic; text-align: center; }
+
+@media (max-width: 480px) {
+  .card-header, .card-body, .ty-block { padding-left: 20px; padding-right: 20px; }
+  .card-meta { padding-left: 20px; }
+  .header-title { font-size: 19px; }
+  .q-text { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-brand">@ingles_express</span>
+  <span class="topbar-tag">Free Assessment</span>
+</div>
+
+<div class="card">
+  <div id="card-content"></div>
+</div>
+
+<p class="site-footer">Strategic practice. Not more grammar. · @INGLES_EXPRESS</p>
+
+<script>
+const steps = [
+  {
+    id: "role",
+    badge: "Your profile",
+    text: "What is your current professional role?",
+    type: "mc",
+    options: [
+      "Mid-level professional (analyst, coordinator, specialist)",
+      "Senior / team lead / manager",
+      "C-level / director / partner",
+      "Currently between roles / job seeking"
+    ]
+  },
+  {
+    id: "interviews",
+    badge: "Context",
+    text: "Do you have any upcoming interviews or selection processes in English?",
+    type: "mc",
+    options: [
+      "Yes — in the next 30 days",
+      "Yes — within the next 3 months",
+      "Not at the moment, but it's on my radar",
+      "No — not a current priority"
+    ]
+  },
+  {
+    id: "contexts",
+    badge: "Daily use",
+    text: "Which of these do you handle regularly in English?",
+    type: "mc",
+    options: [
+      "Mostly emails and written communication",
+      "Meetings with local teams (some English)",
+      "International meetings and client calls",
+      "All of the above — high-stakes environments"
+    ]
+  },
+  {
+    id: "level",
+    badge: "Self-assessment",
+    text: "How would you describe your current professional English level?",
+    type: "mc",
+    options: [
+      "I understand well but struggle to speak fluently",
+      "I can communicate, but I don't sound as professional as I'd like",
+      "I perform well — I want to refine specific areas",
+      "I'm strong, but high-pressure situations are still challenging"
+    ]
+  },
+  {
+    id: "difficulty",
+    badge: "Pain point",
+    text: "What's your biggest difficulty in professional English right now?",
+    type: "open",
+    placeholder: "e.g. I go blank in meetings, I can't find the right words under pressure, my emails sound too informal..."
+  },
+  {
+    id: "objective",
+    badge: "Your goal",
+    text: "What would you most like to achieve in the next 3 months?",
+    type: "open",
+    placeholder: "e.g. ace a job interview, lead meetings with confidence, communicate more clearly with international clients..."
+  }
+];
+
+let cur = 0;
+let answers = {};
+const TOTAL = steps.length;
+
+function render() {
+  const el = document.getElementById("card-content");
+
+  if (cur === TOTAL) { renderContact(el); return; }
+  if (cur > TOTAL)   { return; }
+
+  const s = steps[cur];
+  const pct = Math.round((cur / (TOTAL + 1)) * 100);
+  const letters = ["A","B","C","D"];
+  const answered = s.type === "mc"
+    ? answers[s.id] != null
+    : (answers[s.id] || "").trim().length > 2;
+
+  let qHtml = s.type === "mc"
+    ? `<div class="options">${s.options.map((o,i) =>
+        `<button class="opt${answers[s.id]===i?" selected":""}" onclick="pick(${i})">
+          <span class="opt-ltr">${letters[i]}</span>
+          <span class="opt-txt">${o}</span>
+        </button>`).join("")}</div>`
+    : `<p class="open-hint">No right or wrong answers — just tell me what's actually happening.</p>
+       <textarea placeholder="${s.placeholder}" oninput="saveOpen(this.value)">${answers[s.id]||""}</textarea>`;
+
+  el.innerHTML = `
+    <div class="card-header">
+      <div class="header-eye">Professional English Assessment</div>
+      <h1 class="header-title">Let's understand where you stand.</h1>
+      <p class="header-sub">6 questions · 2 minutes · I'll send personalized feedback.</p>
+    </div>
+    <div class="card-meta">
+      <span class="meta-item"><span class="meta-dot"></span>Free</span>
+      <span class="meta-item"><span class="meta-dot"></span>No sign-up required</span>
+      <span class="meta-item"><span class="meta-dot"></span>Personalized feedback by DM</span>
+    </div>
+    <div class="card-body">
+      <div class="prog-row">
+        <span class="prog-lbl">Progress</span>
+        <span class="prog-lbl">Step ${cur+1} of ${TOTAL+1}</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
+      <div class="q-step">Question ${cur+1}</div>
+      <div class="q-badge">${s.badge}</div>
+      <div class="q-text">${s.text}</div>
+      ${qHtml}
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack()" style="${cur===0?"visibility:hidden":""}">← Back</button>
+        <button class="btn-next" onclick="goNext()" ${!answered?"disabled":""}>
+          ${cur===TOTAL-1?"Almost done →":"Next →"}
+        </button>
+      </div>
+    </div>`;
+}
+
+function renderContact(el) {
+  const pct = Math.round((TOTAL / (TOTAL+1)) * 100);
+  el.innerHTML = `
+    <div class="card-header">
+      <div class="header-eye">One last step</div>
+      <h1 class="header-title">Where should I send your feedback?</h1>
+      <p class="header-sub">I'll review your answers personally and get back to you.</p>
+    </div>
+    <div class="card-body">
+      <div class="prog-row">
+        <span class="prog-lbl">Almost there</span>
+        <span class="prog-lbl">Step ${TOTAL+1} of ${TOTAL+1}</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
+
+      <p class="contact-intro" style="margin-top:8px">
+        <strong>I'll send you personalized feedback</strong> based on your profile and goals —
+        not a generic reply. Leave your email or LinkedIn and I'll reach out within 48 hours.
+      </p>
+
+      <form id="fs-form" action="https://formspree.io/f/xrejjopn" method="POST" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="role"       id="f-role">
+        <input type="hidden" name="interviews" id="f-interviews">
+        <input type="hidden" name="contexts"   id="f-contexts">
+        <input type="hidden" name="level"      id="f-level">
+        <input type="hidden" name="difficulty" id="f-difficulty">
+        <input type="hidden" name="objective"  id="f-objective">
+
+        <div class="field-group">
+          <div class="field-wrap">
+            <div class="field-label">Your name</div>
+            <input type="text" name="name" placeholder="First name is fine" required>
+          </div>
+          <div class="field-wrap">
+            <div class="field-label">Email address</div>
+            <input type="email" name="email" placeholder="you@example.com">
+            <div class="input-hint">Or leave blank if you prefer LinkedIn below.</div>
+          </div>
+          <div class="field-wrap">
+            <div class="field-label">LinkedIn profile URL <span style="color:#9aaabb;font-weight:300">(optional)</span></div>
+            <input type="url" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button type="button" class="btn-back" onclick="cur=TOTAL-1;render()">← Back</button>
+          <button type="submit" class="btn-next" id="btn-submit">Send my assessment →</button>
+        </div>
+      </form>
+    </div>`;
+
+  // populate hidden fields
+  const opts = ["A","B","C","D"];
+  document.getElementById("f-role").value       = answers.role      != null ? opts[answers.role]+" — "+steps[0].options[answers.role] : "";
+  document.getElementById("f-interviews").value = answers.interviews!= null ? opts[answers.interviews]+" — "+steps[1].options[answers.interviews] : "";
+  document.getElementById("f-contexts").value   = answers.contexts  != null ? opts[answers.contexts]  +" — "+steps[2].options[answers.contexts]   : "";
+  document.getElementById("f-level").value      = answers.level     != null ? opts[answers.level]     +" — "+steps[3].options[answers.level]      : "";
+  document.getElementById("f-difficulty").value = answers.difficulty || "";
+  document.getElementById("f-objective").value  = answers.objective  || "";
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById("fs-form");
+  const btn  = document.getElementById("btn-submit");
+  const name = form.querySelector("[name=name]").value.trim();
+  const email= form.querySelector("[name=email]").value.trim();
+  const li   = form.querySelector("[name=linkedin]").value.trim();
+  if (!name) { alert("Please add your name."); return; }
+  if (!email && !li) { alert("Please leave at least an email or LinkedIn profile."); return; }
+  btn.disabled = true; btn.textContent = "Sending...";
+
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: { "Accept": "application/json" }
+  }).then(r => {
+    if (r.ok) { renderThanks(); }
+    else { btn.disabled=false; btn.textContent="Send my assessment →"; alert("Something went wrong — please try again."); }
+  }).catch(()=>{ btn.disabled=false; btn.textContent="Send my assessment →"; alert("Network error — please try again."); });
+}
+
+function renderThanks() {
+  document.getElementById("card-content").innerHTML = `
+    <div class="ty-block">
+      <div class="ty-icon">✦</div>
+      <h2 class="ty-title">Got it — thank you.</h2>
+      <p class="ty-sub">
+        I'll review your answers and send you <strong>personalized feedback</strong>
+        based on your role, context, and goals.<br><br>
+        Expect to hear from me within <strong>48 hours</strong>.
+      </p>
+      <a class="btn-li" href="https://www.linkedin.com/in/karina-zelichowski-431a8054" target="_blank">Follow me on LinkedIn →</a>
+    </div>`;
+}
+
+function pick(i)      { answers[steps[cur].id] = i; render(); }
+function saveOpen(v)  {
+  answers[steps[cur].id] = v;
+  const btn = document.querySelector(".btn-next");
+  if (btn) btn.disabled = v.trim().length <= 2;
+}
+function goNext()     { cur++; render(); }
+function goBack()     { if (cur > 0) { cur--; render(); } }
+
+render();
+</script>
+</body>
+</html>
